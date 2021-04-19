@@ -2,6 +2,8 @@
 
 通过 gin embed 功能，二进制嵌入 vue 静态文件。
 
+> go 最低版本 1.16
+
 ## vue
 
 先全局安装下 vue cli 并创建一个 demo 项目
