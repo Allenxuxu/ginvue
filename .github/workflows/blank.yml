@@ -28,8 +28,8 @@ jobs:
       - name: LS
         run:  ls -la bin
 
-      - name: Archive Release V3 # 打包文件为 zip
-        uses: thedoctor0/zip-release@master
+      - name: Archive Release # 打包文件为 zip
+        uses: TheDoctor0/zip-release@0.4.1
         with:
           filename: ginvue-${{ github.ref }}.zip
           path: 'bin'
