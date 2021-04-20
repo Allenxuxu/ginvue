@@ -1,22 +1,30 @@
 name: Build and Release
 
-on:
-  release: # 发布 Release 后才会运行
-    types: [published]
+on: [push]
+#  release: # 发布 Release 后才会运行
+#    types: [published]
 
 jobs:
   build-zip:
-    name: Build and Publish Extension Zip
+    name: Build and Publish Zip
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Install and Build 
+     - name: "Setup Node"
+       uses: actions/setup-node@v2
+       with:
+         node-version: '14.15.1'
+      - name: "Setup Go"
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.16'
+      - name: Install
         run: |
-         go mod download
-         cd web && npm install
-         make
+          go mod download
+          cd web && npm install
+      - name: Build
+        run: make
 
       - name: Archive Release V3 # 打包文件为 zip
         uses: thedoctor0/zip-release@master
