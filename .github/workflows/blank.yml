@@ -1,6 +1,6 @@
 name: Build and Release
 
-on: [push]
+on: [ push ]
 #  release: # 发布 Release 后才会运行
 #    types: [published]
 
@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-     - name: "Setup Node"
-       uses: actions/setup-node@v2
-       with:
-         node-version: '14.15.1'
+      - name: "Setup Node"
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.15.1'
       - name: "Setup Go"
         uses: actions/setup-go@v2
         with:
@@ -32,7 +32,7 @@ jobs:
           filename: ginvue-${{ github.ref }}.zip
           path: 'bin/*'
 
-      - name: Upload Release 
+      - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true # 因为之前已经创建了 Release，所以要进行更新
