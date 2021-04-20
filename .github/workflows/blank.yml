@@ -31,7 +31,7 @@ jobs:
       - name: Archive Release # 打包文件为 zip
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          filename: ginvue-${{ github.ref }}.zip
+          filename: ginvue.zip
           path: 'bin'
 
       - name: Upload Release
