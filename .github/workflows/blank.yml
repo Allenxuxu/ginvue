@@ -28,10 +28,15 @@ jobs:
       - name: LS
         run:  ls -la bin
 
+      - name: Set env
+        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+      - name: tag
+        run: echo ${{ env.RELEASE_VERSION }}
+
       - name: Archive Release # 打包文件为 zip
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          filename: ginvue-${{ github.ref }}.zip
+          filename: ginvue-${{ env.RELEASE_VERSION }}.zip
           path: 'bin'
 
       - name: Upload Release
@@ -39,5 +44,5 @@ jobs:
         with:
           allowUpdates: true # 因为之前已经创建了 Release，所以要进行更新
           omitName: true # 更新的时候不改变 Release 的名字
-          artifacts: ginvue-${{ github.ref }}.zip # 多个文件逗号分开
+          artifacts: ginvue-${{ env.RELEASE_VERSION }}.zip # 多个文件逗号分开
           token: ${{ secrets.GITHUB_TOKEN }}
