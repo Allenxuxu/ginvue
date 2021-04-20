@@ -1,8 +1,8 @@
 name: Build and Release
 
-on: [ push ]
-#  release: # 发布 Release 后才会运行
-#    types: [published]
+on:
+  push:
+    tags: ['v*', 'test*']
 
 jobs:
   build-zip:
@@ -31,7 +31,7 @@ jobs:
       - name: Archive Release # 打包文件为 zip
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          filename: ginvue.zip
+          filename: ginvue-${{ github.ref }}.zip
           path: 'bin'
 
       - name: Upload Release
