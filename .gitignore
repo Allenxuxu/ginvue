@@ -16,3 +16,6 @@
 
 .idea
 *bin/
+
+static/*
+!(static/static.go)
