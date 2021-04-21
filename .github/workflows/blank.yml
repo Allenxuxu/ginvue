@@ -23,16 +23,32 @@ jobs:
         run: |
           go mod download
           cd web && npm install
-      - name: Build
-        run: make
-      - name: LS
-        run: ls -la bin
 
-      - name: Archive Release # 打包文件为 zip
+      - name: Build linux
+        run: make build_linux
+      - name: Build darwin
+        run: make build_darwin
+      - name: Build windows
+        run: make build_windows
+
+      - name: LS
+        run: ls -la *bin
+
+      - name: Archive Release linux # 打包文件为 zip
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          filename: ginvue.zip
-          path: 'bin'
+          filename: ginvue-linux.zip
+          path: 'linux_bin'
+      - name: Archive Release darwin # 打包文件为 zip
+        uses: TheDoctor0/zip-release@0.4.1
+        with:
+          filename: ginvue-darwin.zip
+          path: 'darwin_bin'
+      - name: Archive Release windows # 打包文件为 zip
+        uses: TheDoctor0/zip-release@0.4.1
+        with:
+          filename: ginvue-windows.zip
+          path: 'windows_bin'
 
       - name: Upload Release
         uses: ncipollo/release-action@v1
