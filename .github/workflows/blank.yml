@@ -55,5 +55,5 @@ jobs:
         with:
           allowUpdates: true # 因为之前已经创建了 Release，所以要进行更新
           omitName: true # 更新的时候不改变 Release 的名字
-          artifacts: ginvue.zip # 多个文件逗号分开
+          artifacts: "*ginvue.zip" # 多个文件逗号分开
           token: ${{ secrets.GITHUB_TOKEN }}
